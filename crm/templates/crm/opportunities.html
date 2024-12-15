@@ -1,0 +1,58 @@
+{% extends "crm/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center"> 
+          <h2 style="text-align: center;">Opportunity List</h2><!-- Center the text and button -->
+            <!-- Add a title or description above the button -->
+            <p style="display: inline;"> 
+              <!-- Use inline display for the button to be next to the text -->
+               Click here to add new Opportunities
+              <a href="{% url 'add_opportunity' %}">
+                  <button type="button" class="btn btn-primary">Add Opportunity</button>
+              </a>
+          </p>
+        </div>
+    </div>
+  </div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Opportunity Name</th>
+            <th scope="col">Client</th>
+            <th scope="col">Estimated Value</th>
+            <th scope="col">Requirement</th>
+            <th scope="col">Estimated Quantity</th>
+            <th scope="col">Status</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Added By</th>
+            <th scope="col">Edit Opportunity</th>
+            <th scope="col">Delete Opportunity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for opportunity in Opportunities %}
+        <tr>
+            <td>{{ opportunity.opportunity_name }}</td>
+            <td>{{ opportunity.client.name }}</td>  <!-- Assuming Client has a name field -->
+            <td>₹{{ opportunity.estimated_value }}</td>
+            <td>{{ opportunity.requirement.product_name }}</td>  <!-- Assuming Product has a name field -->
+            <td style="text-align: center;">{{ opportunity.estimated_qty }}</td>
+            <td>{{ opportunity.status }}</td>
+            <td>{{ opportunity.date_added }}</td>
+            <td>{{ opportunity.added_by}}</td>
+            <td>
+                <a href="{% url 'edit_opportunity' opportunity.id %}">Edit Opportunity Info</a>
+              </td>
+              <td>
+                <a href="{% url 'delete_opportunity' opportunity.id %}">Delete Opportunity</a>
+              </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No opportunities available</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

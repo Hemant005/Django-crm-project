@@ -1,0 +1,23 @@
+{% extends 'crm/base.html' %}
+{% block title %} Login  {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-6 ">
+            <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Login</h4>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input class="btn btn-info" type="submit" value="Login">
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

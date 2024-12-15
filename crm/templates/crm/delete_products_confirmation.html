@@ -1,0 +1,13 @@
+{% extends 'crm/base.html' %}
+{% block title %}Delete Product confirmation{% endblock %}
+{% block content %}
+<h2>Confirm Deletion</h2>
+<p>Are you sure you want to delete the Opportunity "{{ product.product_name }}"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'products' %}">Cancel</a>
+</form>
+
+{% endblock %}

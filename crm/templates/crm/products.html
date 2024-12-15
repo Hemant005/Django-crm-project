@@ -1,0 +1,54 @@
+{% extends "crm/base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+      <div class="col text-center"> 
+        <h2 style="text-align: center;">Product List</h2><!-- Center the text and button -->
+          <!-- Add a title or description above the button -->
+          <p style="display: inline;"> 
+            <!-- Use inline display for the button to be next to the text -->
+             Click here to add new Products
+            <a href="{% url 'add_product' %}">
+                <button type="button" class="btn btn-primary">Add Products</button>
+            </a>
+        </p>
+      </div>
+  </div>
+</div>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="text-align: justify;">Product Name</th>
+        <th scope="col">Unit Cost Price</th>
+        <th scope="col">Previous Qty</th>
+        <th scope="col">Product_Qty</th>
+        <th scope="col">Added By</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Edit Product</th>
+        <th scope="col">Delete Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in Products %}
+      <tr>
+        <td style="text-align: justify;">{{product.product_name}}</td>
+        <td>₹{{product.cost_price}}</td>
+        <td>{{product.previous_qty}}</td>
+        <td>{{product.product_qty}}</td>
+        <td>{{product.added_by}}</td>
+        <td>₹{{product.total_price}}</td>
+        <td>
+          <a href="{% url 'edit_product' product.id %}">Edit Product</a>
+        </td>
+        <td>
+          <a href="{% url 'delete_product' product.id %}">Delete Product</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" class="text-center">No products available</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

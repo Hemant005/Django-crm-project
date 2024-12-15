@@ -1,0 +1,26 @@
+{% extends "crm/base.html" %}
+{% block content %}
+  <h2 style="text-align: center;">Add Client Opportunities</h2>
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-md-6 ">
+            <div class="card custom-card-blue border border-dark">
+                <div class="card-body">
+                <h4 class="card-title" style="text-align: center;">Add Opportunity details</h4>
+                <hr>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="form-group">
+                        <label for="id_estimated_value">Estimated Value:</label>
+                        <span>₹ {{ form.instance.estimated_value|floatformat:2 }}</span>  <!-- Display the estimated value with the rupee symbol -->
+                      </div>
+                    <br>
+                    <input class="btn btn-info" type="submit" value="Add Opportunity">
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'crm/base.html' %}
+{% block title %}Delete Invoice confirmation{% endblock %}
+{% block content %}
+<h2>Confirm Deletion</h2>
+<p>Are you sure you want to delete the invoice for "{{ invoice.client.name }}"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'invoices' %}">Cancel</a>
+</form>
+{% endblock %}

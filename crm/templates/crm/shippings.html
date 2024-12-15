@@ -1,0 +1,56 @@
+{% extends "crm/base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center"> 
+          <h2 style="text-align: center;">Shipping List</h2><!-- Center the text and button -->
+            <!-- Add a title or description above the button -->
+            <p style="display: inline;"> 
+              <!-- Use inline display for the button to be next to the text -->
+               Click here to add new Shippings
+              <a href="{% url 'create_shipping' %}">
+                  <button type="button" class="btn btn-primary">Add Shippings</button>
+              </a>
+          </p>
+        </div>
+    </div>
+  </div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Client</th>
+            <th scope="col">Date</th>
+            <th scope="col">Delivery Address</th>
+            <th scope="col">Delivery Status</th>
+            <th scope="col">Added By</th>
+            <th scope="col">Opportunity</th>
+            <th scope="col">Salesperson</th>
+            <th scope="col">Product</th>
+            <th scope="col">Shipping Quantity</th>
+            <th scope="col">Edit Shipping</th>
+            <th scope="col">Delete Shipping</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for receipt in Shippings %}
+        <tr>
+            <td>{{ receipt.client.name }}</td>  <!-- Assuming Client has a name field -->
+            <td>{{ receipt.date }}</td>
+            <td>{{ receipt.delivery_address }}</td>
+            <td>{{ receipt.delivery_status }}</td>
+            <td>{{ receipt.added_by }}</td>
+            <td>{{ receipt.opportunity.opportunity_name}}</td>
+            <td>{{ receipt.opportunity.added_by.get_full_name }}</td>
+            <td>{{ receipt.product.product_name}}</td>
+            <td>{{ receipt.quantity }}</td>
+            <td><a href="{% url 'edit_shipping' receipt.id %}">Edit shipping</a></td>
+            <td><a href="{% url 'delete_shipping' receipt.id %}">Delete Shipping</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No shipping receipts available</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

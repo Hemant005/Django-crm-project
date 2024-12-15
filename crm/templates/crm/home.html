@@ -1,0 +1,44 @@
+{% extends "crm/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard</title>
+</head>
+<body>
+    <h1 style="text-align: center;">CRM Home page</h1>
+    <p style="text-align: center;">Welcome to CRM home page</p>
+    {% if user.is_authenticated %}
+<div class="container mt-5">
+            <div class="container text-center mx-auto">
+                <h1 class="dashboard_content">Welcome to Easy-Office</h1>
+                <p class="dashboard_content">You have already logged in , click on view dashboard to access the dashbaord</p>
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg mr-2">View Dashboard</a>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6">
+            <h1>Our Vision</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae vero veniam unde atque laboriosam sed amet, adipisci explicabo. Molestias cupiditate consequatur aliquam earum architecto asperiores deleniti fugiat iure, temporibus minus?</p>
+        </div>
+    </div> -->
+</div>
+{% else %}
+<div class="container mt-5">
+            <div class="container text-center">
+                <h1 class="dashboard_content">Welcome to Easy-Office</h1>
+                <p class="dashboard_content">If you are new user , please create your account by clicking on Sign up , if you are an existing user click on the Login button</p>
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg mr-2">Login</a>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6">
+            <h1>Our Vision</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae vero veniam unde atque laboriosam sed amet, adipisci explicabo. Molestias cupiditate consequatur aliquam earum architecto asperiores deleniti fugiat iure, temporibus minus?</p>
+        </div>
+    </div> -->
+</div>
+{% endif %}
+</body>
+</html>
+{% endblock %}

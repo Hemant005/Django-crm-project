@@ -1,0 +1,30 @@
+{% extends "crm/base.html" %}
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">User Profile</h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                    <li class="list-group-item"><strong>Username:</strong> {{ profile.user.username }}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{ profile.user.email }}</li>
+                    <li class="list-group-item"><strong>Department:</strong> {{ profile.department }}</li>
+                    <li class="list-group-item"><strong>Phone:</strong> {{ profile.phone }}</li>
+                    <li class="list-group-item"><strong>Role:</strong> {{ profile.role }}</li>
+                    <li class="list-group-item"><strong>Gender:</strong> {{ profile.get_gender_display }}</li>
+                    <li class="list-group-item"><strong>Age:</strong> {{ profile.age }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+<br>
