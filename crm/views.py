@@ -571,4 +571,24 @@ def top_orders_view(request):
     else:
         return render(request, 'crm/unauthorised.html')
     
+def stock_reduced_view(request, product_id, qty):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'crm/stock_reduced.html', {'product': product, 'reduced_qty': qty})
 
+def insufficient_stock_view(request, product_id, required_qty):
+    product = get_object_or_404(Product, pk=product_id)
+    return render(request, 'crm/insufficient_stock.html', {'product': product, 'required_qty': required_qty})
+
+
+def reduce_stock_view(request, product_id, qty):
+    # Get the product object
+    product = get_object_or_404(Product, pk=product_id)
+    
+    # Try to reduce stock
+    success = product.reduce_stock(qty)
+    
+    if success:
+        return render(request, 'crm/stock_reduced.html', {'product': product, 'reduced_qty': qty})
+    else:
+        # If stock is insufficient, render an error page
+        return render(request, 'crm/insufficient_stock.html', {'product': product, 'required_qty': qty})

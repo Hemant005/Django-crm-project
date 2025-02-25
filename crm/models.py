@@ -109,7 +109,7 @@ class Shipping_Receipt(models.Model):
                      ]
     client=models.ForeignKey(Client,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add='True')
-    delivery_address=models.CharField(max_length=255)
+    delivery_address=models.TextField()
     delivery_status = models.CharField(max_length=10, choices=DELIVERY_STATUS, default='pending')
     date_added=models.DateField(auto_now_add=True,null=True,blank=True) 
     added_by=models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)

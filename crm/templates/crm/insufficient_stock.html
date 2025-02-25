@@ -1,0 +1,17 @@
+{% extends "crm/base.html" %}
+{% block content %}
+<!-- crm/templates/crm/insufficient_stock.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insufficient Stock</title>
+</head>
+<body>
+    <h1>Insufficient Stock for {{ product.product_name }}</h1>
+    <p>Sorry, you tried to reduce the stock by {{ required_qty }} but only {{ product.product_qty }} is available.</p>
+    <a href="{% url 'products' %}">Go back to products</a> <!-- Adjust the URL as needed -->
+</body>
+</html>
+{% endblock %}
